@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Placeholder Comments -->
+    <!-- Chosen Palette: Pastel de Lúcuma -->
+    <!-- Application Structure Plan: A single-page landing page with distinct, scrollable sections: Hero (introduces the course), Benefits (why choose this course), Modules (what will be learned), Testimonials (social proof), and a Final CTA (last call to action). This linear flow is designed to guide the user from initial interest to conversion, addressing key motivations and building trust. Each section is visually separated and uses clear headings and concise text. -->
+    <!-- Visualization & Content Choices:
+    - Hero Section: Prominent title, persuasive description with emojis, and a clear call-to-action button. Goal: Capture attention, inform, direct to Hotmart. Method: Styled HTML/Tailwind.
+    - Benefits Section: Grid of cards with icons and short descriptions highlighting key advantages (certification, flexibility, community). Goal: Inform, convince. Method: Styled HTML/Tailwind.
+    - Modules Section: List of course modules with icons and brief descriptions, emphasizing practical and business-oriented content. Goal: Inform, detail content. Method: Styled HTML/Tailwind.
+    - Testimonials Section: Cards displaying positive reviews from hypothetical students, including avatars. Goal: Build trust, social proof. Method: Styled HTML/Tailwind.
+    - Final CTA Section: Reinforces the main benefit and includes another call-to-action button. Goal: Drive conversion. Method: Styled HTML/Tailwind.
+    No charts or complex interactive elements are used as the primary goal of an affiliate landing page is direct conversion through persuasive content and clear calls to action, rather than data exploration. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    
+    <title>¡Endulza tu Futuro! | Curso de Repostería Online con Certificación</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-pink: #FF6B81;
+            --secondary-purple: #8E24AA;
+            --light-pink: #FCE4EC;
+            --cream: #FFFDE7;
+            --dark-gray: #333333;
+            --medium-gray: #555555;
+            --light-gray: #EEEEEE;
+            --accent-green: #4CAF50;
+            --accent-gold: #FFD700;
+        }
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--light-pink);
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-purple);
+            text-align: center;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-pink);
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(255, 107, 129, 0.3);
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .cta-button:hover {
+            background-color: #E04F6D;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(255, 107, 129, 0.4);
+        }
+        .section-title {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background-color: var(--primary-pink);
+            margin: 15px auto 0;
+            border-radius: 3px;
+        }
+        .hero-section {
+            background-image: url('f1.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 700px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.35);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            color: #fff;
+            animation: fadeInScale 1.2s ease-out forwards;
+        }
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            color: #fff;
+        }
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 7px rgba(0, 0, 0, 0.4);
+            color: var(--accent-gold);
+        }
+        .hero-description {
+            font-size: 1.3rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+        .video-section {
+            background-color: var(--light-pink); /* Fondo suave para la sección de video */
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px; /* Ancho máximo del video */
+            margin: 0 auto; /* Centrar el contenedor del video */
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 (altura es 56.25% del ancho) */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px; /* Bordes redondeados para el video */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra para el video */
+            /* Las siguientes propiedades ya aseguran que sea adaptable: */
+            /* width: 100%; y padding-bottom para la relación de aspecto */
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0; /* Eliminar borde del iframe */
+        }
+        .about-section {
+            background-color: var(--cream);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .about-item {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .about-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        .about-icon {
+            font-size: 4rem;
+            color: var(--primary-pink);
+            margin-bottom: 25px;
+        }
+        .about-item h3 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--secondary-purple);
+        }
+        .about-item p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+        }
+        .modules-section {
+            background-color: var(--light-pink);
+            padding: 80px 0;
+        }
+        .module-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        .module-item:hover {
+            transform: translateX(10px);
+        }
+        .module-icon {
+            flex-shrink: 0;
+            font-size: 3rem;
+            color: var(--primary-pink);
+            background-color: #FFECB3;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .module-content h3 {
+            text-align: left;
+            font-size: 1.9rem;
+            margin-bottom: 10px;
+            color: var(--secondary-purple);
+        }
+        .module-content p {
+            font-size: 1.1rem;
+            color: var(--medium-gray);
+        }
+        .testimonials-section {
+            background-color: var(--cream);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .testimonial-carousel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .testimonial-card {
+            background-color: #fff;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+        }
+        .testimonial-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--primary-pink);
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--dark-gray);
+            margin-bottom: 20px;
+        }
+        .testimonial-author {
+            font-size: 1.0rem;
+            font-weight: 700;
+            color: var(--secondary-purple);
+        }
+        .final-cta-section {
+            background-color: var(--secondary-purple);
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .final-cta-section .section-title {
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        .final-cta-section .section-title::after {
+            background-color: var(--primary-pink);
+        }
+        .final-cta-section p {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 300;
+        }
+        footer {
+            background-color: #FFFFFF;
+            color: var(--dark-gray);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .footer-links a {
+            color: var(--secondary-purple);
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--primary-pink);
+        }
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            .hero-description {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+            }
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+            }
+            .about-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+            .module-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .module-content h3 {
+                text-align: center;
+            }
+        }
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 550px;
+                padding: 40px 15px;
+            }
+            .hero-title {
+                font-size: 2.8rem;
+            }
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            .about-item, .module-item, .testimonial-card {
+                padding: 30px;
+            }
+            .testimonial-avatar {
+                width: 100px;
+                height: 100px;
+                border-width: 4px;
+            }
+            .testimonial-text {
+                font-size: 1.1rem;
+            }
+            .final-cta-section {
+                padding: 70px 15px;
+            }
+            .final-cta-section p {
+                font-size: 1.2rem;
+                margin-bottom: 30px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            .hero-description {
+                font-size: 0.9rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .cta-button {
+                font-size: 0.95rem;
+                padding: 12px 25px;
+            }
+            .about-item {
+                padding: 25px;
+            }
+            .about-icon {
+                font-size: 3rem;
+            }
+            .about-item h3 {
+                font-size: 1.6rem;
+            }
+            .module-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+            .module-content h3 {
+                font-size: 1.7rem;
+            }
+            .module-content p {
+                font-size: 1rem;
+            }
+            .testimonial-card {
+                padding: 25px;
+            }
+            .testimonial-text {
+                font-size: 1rem;
+            }
+            .final-cta-section p {
+                font-size: 1rem;
+            }
+            .footer-links a {
+                display: block;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">¡Despierta la Magia en Tu Cocina! 👩‍🍳✨</h1>
+            <p class="hero-subtitle">Curso Online de Repostería de Dulces con Certificación</p>
+            <p class="hero-description">
+                ¿Sueñas con crear postres que encanten a todos? 🍰 Nuestro curso está diseñado para mujeres y jóvenes apasionadas como tú. Aprende desde cero, perfecciona tus habilidades y obtén una certificación que endulzará tu futuro. ¡Tu aventura comienza aquí! 💖
+            </p>
+            <a href="https://go.hotmart.com/O100812325T?ap=aa69" target="_blank" class="cta-button">
+                ¡Quiero Mi Curso Ahora! 🚀
+            </a>
+        </div>
+    </header>
+
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">Mira un Adelanto de lo que Aprenderás 🎬</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Yc4ewEIUW4E?si=bI3vlW2tdT_J1d7D" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section">
+        <div class="container">
+            <h2 class="section-title">¿Por Qué Elegir Repostería Mágica? 🌟</h2>
+            <div class="about-grid">
+                <div class="about-item">
+                    <i class="fas fa-certificate about-icon"></i>
+                    <h3>Certificación Profesional</h3>
+                    <p>Obtén un diploma que valida tus nuevas habilidades y abre puertas en el mundo dulce.</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-home about-icon"></i>
+                    <h3>Aprende a Tu Ritmo</h3>
+                    <p>Clases 100% online, accesibles 24/7 desde la comodidad de tu casa, sin presiones.</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-users about-icon"></i>
+                    <h3>Comunidad Exclusiva</h3>
+                    <p>Conéctate con otras amantes de la repostería, comparte tus creaciones y crece juntas.</p>
+                </div>
+                <div class="about-item">
+                    <i class="fas fa-money-bill-wave about-icon"></i>
+                    <h3>Enfoque Emprendedor</h3>
+                    <p>Aprende a costear, vender y promocionar tus postres en el mercado peruano.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="modules-section">
+        <div class="container">
+            <h2 class="section-title">Tu Dulce Recorrido por el Curso 📚</h2>
+            
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-cookie-bite"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 1: CURSO REPOSTERÍA Y DECORACIÓN ONLINE</h3>
+                    <p>Bienvenida Curso de Repostería, Decoración, Malla Repostería, Decoración y Aspectos Generales</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-egg"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 2: RECETARIO</h3>
+                    <p>Recetario para descargar (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-blender"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 3: TEORIA</h3>
+                    <p>Higiene y manipulación de los alimentos (PDF), Principios básicos de la repostería (PDF), Cálculo y costos fijos (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-ice-cream"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 4: MERENGUES Y RELLENOS</h3>
+                    <p>Recetas para descargar (PDF), Merengue Italiano, Merenguitos de merengue Italiano, Merengue Suizo, Buttercream de merengue Suizo, Frosting de queso crema y Ganache de chocolate</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-birthday-cake"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 5: TORTAS HUMEDAS</h3>
+                    <p>Introducción, Bizcocho clásico para tortas, Clásica torta tres leches, Torta de coco, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-palette"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 6: TORTAS SEMIFRIAS</h3>
+                    <p>Introducción, Cheesecake de maracuyá, Cheesecake de arándanos horneado, Tiramisú, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-cookie"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 7: KUCHEN Y QUICHE</h3>
+                    <p>Introducción, Kuchen de manzana, Tarta de frutos rojos, Quiche caprese, Deliciosa crema pastelera, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-egg"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 8: MANEJO DE BOQUILLAS Y CARROT CAKE</h3>
+                    <p>Introducción, Manejo de boquillas, técnicas de mangueado, Frosting clásico con queso crema, Carrot cake, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-apple-alt"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 9: MUFFINS Y BROWNIES</h3>
+                    <p>Introducción, Muffins, Brownie, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-cookie-bite"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 10: MASA DE HOJA</h3>
+                    <p>Introducción, Masa de hojas, Bocado minilunch, Palmeritas, Torta de hojaldre, Ganache de chocolate, Deliciosa crema pastelera, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-candy-cane"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 11: BIZCOCHOS</h3>
+                    <p>Introducción, Clásica torta mokka, Brazo de reina super fácil, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-hand-holding-usd"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 12: TORTA DE AUTOR</h3>
+                    <p>Introducción, Simple y deliciosa torta de amapola, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-bullhorn"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 13: TORTAS DE CHOCOLATE</h3>
+                    <p>Introducción, Clásico bizcocho de chocolate, Torta marquesa de chocolate, Clásica torta selva negra, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-box"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 14: GALLETAS</h3>
+                    <p>Introducción, Galletas de champaña, Delicias de frambuesa, Alfajores rellenos con manjar, Galletas de avena con chips de chocolate, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-lightbulb"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 15: REPOSTERIA CHILENA</h3>
+                    <p>Introducción, Clásicos Chilenitos, Principes rellenos, Torta de hojarasca, Puntos Claves y Fichas técnicas (PDF)</p>
+                </div>
+            </div>
+            <div class="module-item">
+                <div class="module-icon"><i class="fas fa-graduation-cap"></i></div>
+                <div class="module-content">
+                    <h3>Módulo 16: MASA CHOUX</h3>
+                    <p>Introducción, Paso a paso de la masa choux, Profiteroles clásicos rellenos, Torta Saint Honoré, Deliciosa crema pastelera, Puntos Claves y Ficha técnica (PDF)</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Nuestras Alumnas Comparten su Alegría 🥰</h2>
+            <div class="testimonial-carousel">
+                <div class="testimonial-card">
+                    <img src="com1.jpg" alt="Avatar de Alumna Sofía R." class="testimonial-avatar">
+                    <p class="testimonial-text">
+                        "¡Increíble! Nunca pensé que podría hacer pasteles tan hermosos y deliciosos. Las clases son súper claras y me siento muy inspirada. ¡Gracias, Repostería Mágica por endulzar mis días!"
+                    </p>
+                    <p class="testimonial-author">- Sofía R. 🌸</p>
+                </div>
+                <div class="testimonial-card">
+                    <img src="com2.jpg" alt="Avatar de Alumna Camila G." class="testimonial-avatar">
+                    <p class="testimonial-text">
+                        "Este curso me dio la confianza para empezar mi propio emprendimiento de postres. La certificación es un plus enorme y la comunidad es genial. ¡Totalmente recomendado!"
+                    </p>
+                    <p class="testimonial-author">- Camila G. ✨</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta-section">
+        <div class="container">
+            <h2 class="section-title">¡Tu Futuro Dulce Te Espera! 💖</h2>
+            <p>No dejes que tus sueños se queden en el horno. Inscríbete hoy y empieza a crear magia con tus propias manos.</p>
+            <a href="https://go.hotmart.com/O100812325T?ap=aa69" target="_blank" class="cta-button">
+                ¡Inscríbete Ahora y Recibe Tu Certificación! 🎓
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Repostería Mágica. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
